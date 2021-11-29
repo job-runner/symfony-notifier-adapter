@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "027fc44437c25ac78a59ac1ae8c2e510",
+    "content-hash": "98f28d3c14cbc398f808f5fce16c8c87",
     "packages": [
         {
             "name": "dragonmantank/cron-expression",
@@ -68,17 +68,17 @@
             "time": "2020-11-24T19:55:57+00:00"
         },
         {
-            "name": "fezfez/job-runner",
+            "name": "job-runner/job-runner",
             "version": "0.1.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/fezfez/job-runner.git",
-                "reference": "900521d1cd087ce06460c6ce4801c1a7935ac749"
+                "url": "https://github.com/job-runner/job-runner.git",
+                "reference": "4f3165d7916e30bbc75c033bce19f288e1523e2e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fezfez/job-runner/zipball/900521d1cd087ce06460c6ce4801c1a7935ac749",
-                "reference": "900521d1cd087ce06460c6ce4801c1a7935ac749",
+                "url": "https://api.github.com/repos/job-runner/job-runner/zipball/4f3165d7916e30bbc75c033bce19f288e1523e2e",
+                "reference": "4f3165d7916e30bbc75c033bce19f288e1523e2e",
                 "shasum": ""
             },
             "require": {
@@ -98,7 +98,7 @@
             "type": "library",
             "autoload": {
                 "psr-4": {
-                    "Fezfez\\JobRunner\\": "src"
+                    "JobRunner\\JobRunner\\": "src"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -112,12 +112,12 @@
                     "homepage": "https://github.com/fezfez"
                 }
             ],
-            "homepage": "https://github.com/fezfez/job-runner",
+            "homepage": "https://github.com/job-runner/job-runner",
             "support": {
-                "issues": "https://github.com/fezfez/job-runner/issues",
-                "source": "https://github.com/fezfez/job-runner/tree/0.1.0"
+                "issues": "https://github.com/job-runner/job-runner/issues",
+                "source": "https://github.com/job-runner/job-runner/tree/0.1.0"
             },
-            "time": "2021-11-29T08:39:38+00:00"
+            "time": "2021-11-29T11:20:27+00:00"
         },
         {
             "name": "psr/log",
