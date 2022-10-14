@@ -20,45 +20,41 @@ final class SymfonyNotifierEventListener implements JobEvent, JobSuccessEvent, J
     public const NOTIFICATION_SUBJECT_FORMAT = 'job %s : %s';
     public const NOTIFICATION_MESSAGE_FORMAT = '%s';
 
-    private NotifierInterface $notifier;
-    /** @var array<array-key, string> */
-    private array $notificationChannelSuccess;
-    /** @var array<array-key, string> */
-    private array $notificationChannelFail;
     /** @var array<array-key, RecipientInterface> */
     private array $recipients;
 
     /**
-     * @param array<array-key, string> $notificationChannelSuccess
-     * @param array<array-key, string> $notificationChannelFail
+     * @param list<string> $notificationChannelSuccess
+     * @param list<string> $notificationChannelFail
      */
-    public function __construct(NotifierInterface $notifier, array $notificationChannelSuccess = [], array $notificationChannelFail = [], RecipientInterface ...$recipients)
-    {
-        $this->notifier                   = $notifier;
-        $this->notificationChannelSuccess = $notificationChannelSuccess;
-        $this->notificationChannelFail    = $notificationChannelFail;
-        $this->recipients                 = $recipients;
+    public function __construct(
+        private readonly NotifierInterface $notifier,
+        private readonly array $notificationChannelSuccess = [],
+        private readonly array $notificationChannelFail = [],
+        RecipientInterface ...$recipients,
+    ) {
+        $this->recipients = $recipients;
     }
 
-    /** @param array<array-key, string> $notificationChannelSuccess */
+    /** @param list<string> $notificationChannelSuccess */
     public function withNotificationChannelSuccess(array $notificationChannelSuccess): self
     {
         return new self(
             $this->notifier,
             $notificationChannelSuccess,
             $this->notificationChannelFail,
-            ...$this->recipients
+            ...$this->recipients,
         );
     }
 
-    /** @param array<array-key, string> $notificationChannelFail */
+    /** @param list<string> $notificationChannelFail */
     public function withNotificationChannelFail(array $notificationChannelFail): self
     {
         return new self(
             $this->notifier,
             $this->notificationChannelSuccess,
             $notificationChannelFail,
-            ...$this->recipients
+            ...$this->recipients,
         );
     }
 
@@ -68,7 +64,7 @@ final class SymfonyNotifierEventListener implements JobEvent, JobSuccessEvent, J
             $this->notifier,
             $this->notificationChannelSuccess,
             $this->notificationChannelFail,
-            ...$recipients
+            ...$recipients,
         );
     }
 
@@ -82,7 +78,7 @@ final class SymfonyNotifierEventListener implements JobEvent, JobSuccessEvent, J
         $this->doNotify($job, $output, $this->notificationChannelSuccess);
     }
 
-    /** @param array<array-key, string> $channel */
+    /** @param list<string> $channel */
     private function doNotify(Job $job, string $output, array $channel): void
     {
         if (count($channel) === 0) {

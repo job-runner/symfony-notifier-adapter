@@ -10,9 +10,7 @@ use PHPUnit\Framework\TestCase;
 use Symfony\Component\Notifier\Notification\Notification;
 use Symfony\Component\Notifier\NotifierInterface;
 
-/**
- * @covers \JobRunner\JobRunner\SymfonyNotifier\SymfonyNotifierEventListener
- */
+/** @covers \JobRunner\JobRunner\SymfonyNotifier\SymfonyNotifierEventListener */
 class SymfonyNotifierEventListenerTest extends TestCase
 {
     public function testSuccess(): void
