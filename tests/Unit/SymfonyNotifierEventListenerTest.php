@@ -2,13 +2,14 @@
 
 declare(strict_types=1);
 
-namespace JobRunner\JobRunner\SymfonyNotifier\Tests\Unit\EventListener;
+namespace JobRunner\JobRunner\SymfonyNotifier\Tests\Unit;
 
 use JobRunner\JobRunner\Job\Job;
 use JobRunner\JobRunner\SymfonyNotifier\SymfonyNotifierEventListener;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Notifier\Notification\Notification;
 use Symfony\Component\Notifier\NotifierInterface;
+use Symfony\Component\Notifier\Recipient\RecipientInterface;
 
 /** @covers \JobRunner\JobRunner\SymfonyNotifier\SymfonyNotifierEventListener */
 class SymfonyNotifierEventListenerTest extends TestCase
@@ -20,7 +21,7 @@ class SymfonyNotifierEventListenerTest extends TestCase
 
         $notifier->expects($this->once())->method('send');
 
-        $sUT = new SymfonyNotifierEventListener($notifier, ['chat']);
+        $sUT = (new SymfonyNotifierEventListener($notifier))->withNotificationChannelSuccess(['chat']);
 
         $sUT->success($job, 'toto');
     }
@@ -40,8 +41,9 @@ class SymfonyNotifierEventListenerTest extends TestCase
 
     public function testFail(): void
     {
-        $notifier = self::createMock(NotifierInterface::class);
-        $job      = self::createMock(Job::class);
+        $notifier  = self::createMock(NotifierInterface::class);
+        $job       = self::createMock(Job::class);
+        $recipient = self::createMock(RecipientInterface::class);
 
         $job->expects($this->any())->method('getName')->willReturn('hello');
         $notifier->expects($this->once())->method('send')->with($this->callback(static function (Notification $param) {
@@ -49,9 +51,9 @@ class SymfonyNotifierEventListenerTest extends TestCase
             self::assertSame('job hello : titit', $param->getSubject());
 
             return true;
-        }));
+        }), $recipient);
 
-        $sUT = new SymfonyNotifierEventListener($notifier, [], ['chat']);
+        $sUT = (new SymfonyNotifierEventListener($notifier))->withNotificationChannelFail(['chat'])->withRecipient($recipient);
 
         $sUT->fail($job, 'titit');
     }
