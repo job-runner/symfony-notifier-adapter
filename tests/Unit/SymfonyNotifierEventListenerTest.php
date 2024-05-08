@@ -6,12 +6,13 @@ namespace JobRunner\JobRunner\SymfonyNotifier\Tests\Unit;
 
 use JobRunner\JobRunner\Job\Job;
 use JobRunner\JobRunner\SymfonyNotifier\SymfonyNotifierEventListener;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Notifier\Notification\Notification;
 use Symfony\Component\Notifier\NotifierInterface;
 use Symfony\Component\Notifier\Recipient\RecipientInterface;
 
-/** @covers \JobRunner\JobRunner\SymfonyNotifier\SymfonyNotifierEventListener */
+#[CoversClass(SymfonyNotifierEventListener::class)]
 class SymfonyNotifierEventListenerTest extends TestCase
 {
     public function testSuccess(): void
