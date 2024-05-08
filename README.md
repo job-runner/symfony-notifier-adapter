@@ -1,4 +1,4 @@
-# symfony/notifier for JobRunner #
+# symfony/notifier for JobRunner
 
 [![Build Status](https://github.com/job-runner/symfony-notifier-adapter/actions/workflows/continuous-integration.yml/badge.svg)](https://github.com/job-runner/symfony-notifier-adapter/actions/workflows/continuous-integration.yml)
 [![Type Coverage](https://shepherd.dev/github/job-runner/symfony-notifier-adapter/coverage.svg)](https://shepherd.dev/github/job-runner/symfony-notifier-adapter)
