@@ -17,8 +17,8 @@ use function sprintf;
 
 final class SymfonyNotifierEventListener implements JobEvent, JobSuccessEvent, JobFailEvent
 {
-    public const NOTIFICATION_SUBJECT_FORMAT = 'job %s : %s';
-    public const NOTIFICATION_MESSAGE_FORMAT = '%s';
+    public const string NOTIFICATION_SUBJECT_FORMAT = 'job %s : %s';
+    public const string NOTIFICATION_MESSAGE_FORMAT = '%s';
 
     /** @var array<array-key, RecipientInterface> */
     private array $recipients;
